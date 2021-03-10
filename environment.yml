@@ -1,0 +1,13 @@
+# create environment: conda env create --file environment.yml
+
+name: mlfa_csc
+
+dependencies:
+  - python=3.7
+  - pip
+  - pandas
+  - numpy
+  - matplotlib
+  - pip:
+    # latest tensorflow version on anaconda for macOS is 2.0.0
+    - tensorflow==2.3
