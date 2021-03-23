@@ -12,7 +12,7 @@ import numpy as np
 
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 #for replicability purposes set seed
-#TODO: set random seed
+tf.random.set_seed(91195003)
 #for an easy reset backend session state
 tf.keras.backend.clear_session()
 
