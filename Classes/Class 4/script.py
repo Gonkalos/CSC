@@ -254,8 +254,24 @@ def high_level_fit_and_predict():
     mlp.compile(optimizer, loss=loss_object, metrics=[train_metric])
     #since the train_dataset already takes care of batching, we don't pass a batch_size argument
     #passing validation data for monitoring validation loss and metrics at the end of each epoch
+
+    callbacks = [
+        tf.keras.callbacks.ModelCheckpoint(
+            #path where to save the model
+            filepath='checkpoints/my_model_{epoch}_{val_loss:.3f}.hdf5',
+            #overwrite the current checkpoint only if the val_loss has improved
+            save_best_only=True,
+            monitor='val_loss',
+            #if true, only the weigths are saved
+            save_weigths_only=False,
+            #verbosity mode
+            verbose=1,
+            #save checkpoint every 5 epochs
+            period=5)
+    ]
+
     #TODO: what is the input of fit?
-    history = mlp.fit(train_dataset, validation_data=validation_dataset, epochs=epochs)
+    history = mlp.fit(train_dataset, validation_data=validation_dataset, epochs=epochs, callbacks=callbacks)
     #print('\nHistory values per epoch:', history.history)
     
     #evaluating the model on the test data
@@ -282,7 +298,7 @@ def high_level_fit_and_predict():
 Run
 '''
 #hyperparameters
-epochs = 5
+epochs = 20
 batch_size = 32
 learning_rate = 1e-3
 output_neurons = 10

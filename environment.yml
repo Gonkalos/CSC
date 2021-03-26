@@ -11,3 +11,4 @@ dependencies:
   - pip:
     # latest tensorflow version on anaconda for macOS is 2.0.0
     - tensorflow==2.3
+    - gym
