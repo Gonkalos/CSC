@@ -1,14 +1,19 @@
-# create environment: conda env create --file environment.yml
+# create environment: conda env create -f environment.yml
+# update environment: conda env update -n mlfa_csc -f environment.yml
 
 name: mlfa_csc
 
 dependencies:
   - python=3.7
   - pip
+  - ipykernel
   - pandas
   - numpy
   - matplotlib
+  - scikit-learn
   - pip:
-    # latest tensorflow version on anaconda for macOS is 2.0.0
     - tensorflow==2.3
     - gym
+    - pydot
+    - pydotplus
+    - graphviz
